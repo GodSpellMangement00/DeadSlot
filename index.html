@@ -1,1 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DeadSlot | Web & Discord Bot Developer</title>
+  <meta name="description" content="DeadSlot — Paid Web Developer & Discord Bot Developer." />
 
+  <style>
+    :root {
+      --bg:#ffffff;
+      --text:#111;
+      --accent:#4f46e5;
+      --card:#f3f4f6;
+    }
+
+    body.dark {
+      --bg:#0f172a;
+      --text:#e5e7eb;
+      --accent:#818cf8;
+      --card:#1e293b;
+    }
+
+    * { box-sizing:border-box; }
+
+    body {
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      transition:0.3s;
+    }
+
+    main {
+      max-width:900px;
+      margin:auto;
+      padding:60px 20px;
+    }
+
+    section { margin-bottom:70px; }
+
+    h1 { font-size:3rem; margin-bottom:5px; }
+    h2 { margin-bottom:15px; }
+
+    .tagline { opacity:.8; }
+    .value { margin:15px 0; }
+
+    .discord-btn {
+      display:inline-block;
+      padding:12px 20px;
+      background:var(--accent);
+      color:#fff;
+      border-radius:6px;
+      text-decoration:none;
+      margin-right:10px;
+    }
+
+    .discord-btn.secondary {
+      background:transparent;
+      color:var(--accent);
+      border:2px solid var(--accent);
+    }
+
+    .badges span {
+      display:inline-block;
+      background:var(--card);
+      padding:8px 14px;
+      margin:6px;
+      border-radius:20px;
+    }
+
+    .project {
+      background:var(--card);
+      padding:16px;
+      border-radius:8px;
+      margin-bottom:16px;
+      transition:transform .2s;
+    }
+
+    .project:hover { transform:translateY(-4px); }
+
+    .filters button {
+      margin-right:8px;
+      padding:6px 12px;
+      border:none;
+      cursor:pointer;
+    }
+
+    .filters .active {
+      background:var(--accent);
+      color:#fff;
+    }
+
+    .terminal {
+      background:#000;
+      color:#0f0;
+      padding:20px;
+      border-radius:6px;
+      font-family:monospace;
+    }
+
+    footer {
+      text-align:center;
+      opacity:.6;
+    }
+
+    #themeToggle {
+      position:fixed;
+      top:20px;
+      right:20px;
+      border:none;
+      padding:10px;
+      cursor:pointer;
+      border-radius:50%;
+    }
+
+    .reveal {
+      opacity:0;
+      transform:translateY(30px);
+      transition:0.6s;
+    }
+  </style>
+</head>
+<body>
+
+<button id="themeToggle">🌙</button>
+
+<main>
+
+  <!-- HERO -->
+  <section class="reveal">
+    <h1>DeadSlot</h1>
+    <p class="tagline">Web Developer (Paid)</p>
+    <p class="value">
+      Building clean websites & powerful Discord bots for real use.
+    </p>
+
+    <a class="discord-btn" href="https://discord.com/users/1121062759971430510" target="_blank">
+      Contact on Discord
+    </a>
+
+    <a class="discord-btn secondary" href="https://discord.gg/YQVF7sy2gR" target="_blank">
+      Join My Discord Server
+    </a>
+  </section>
+
+  <!-- TERMINAL -->
+  <section class="terminal reveal">
+    <p>&gt; whoami</p>
+    <p>DeadSlot — Web & Discord Bot Developer</p>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="reveal">
+    <h2>About Me</h2>
+    <p>
+      I'm a Discord bot developer and website developer focused on clean,
+      functional, and reliable solutions.
+    </p>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="reveal">
+    <h2>Skills</h2>
+    <div class="badges">
+      <span>Web Development</span>
+      <span>Discord Bot Development</span>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="reveal">
+    <h2>Projects</h2>
+
+    <div class="filters">
+      <button class="active">All</button>
+      <button>Web</button>
+      <button>Discord</button>
+    </div>
+
+    <div class="project">
+      <h3>Project Name</h3>
+      <p>Project description here.</p>
+      <span>Link coming soon</span>
+    </div>
+
+    <div class="project">
+      <h3>Project Name</h3>
+      <p>Project description here.</p>
+      <span>Link coming soon</span>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="reveal">
+    <h2>Contact</h2>
+    <p><strong>Discord:</strong> DeadSlot</p>
+    <p>ID: 1121062759971430510</p>
+    <p>
+      Server:
+      <a href="https://discord.gg/YQVF7sy2gR" target="_blank">
+        discord.gg/YQVF7sy2gR
+      </a>
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© <span id="year"></span> DeadSlot. All rights reserved.</p>
+  </footer>
+
+</main>
+
+<script>
+  // Theme toggle
+  const toggle = document.getElementById("themeToggle");
+  toggle.onclick = () => {
+    document.body.classList.toggle("dark");
+    toggle.textContent =
+      document.body.classList.contains("dark") ? "☀️" : "🌙";
+  };
+
+  // Year
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll(".reveal");
+  const revealOnScroll = () => {
+    reveals.forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+        el.style.opacity = 1;
+        el.style.transform = "translateY(0)";
+      }
+    });
+  };
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll();
+</script>
+
+</body>
+</html>
